@@ -1,5 +1,6 @@
 #pragma once
 
+#include "pch.h"
 #include "EventHandler.h"
 
 //  CHIP-8's keypad   -- mapping --> Computer Keyboard

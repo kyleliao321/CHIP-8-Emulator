@@ -1,16 +1,11 @@
 #pragma once
 
+#include "pch.h"
 #include "Window.h"
 
 Window::Window(const std::string& name, unsigned int w, unsigned int h)
     : m_window(nullptr), m_renderer(nullptr), m_texture(nullptr), m_chip8(nullptr)
 {
-    if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
-    {
-        printf("SDL_Error: %s\n", SDL_GetError());
-        exit(1);
-    }
-
     m_window = SDL_CreateWindow(
         "CHIP-8 Emulator",
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,

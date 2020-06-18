@@ -1,9 +1,4 @@
-#include <chrono>
-#include <thread>
-
-#ifdef _WIN64
-#include <windows.h>
-#endif
+#include "pch.h"
 
 #include "CHIP8.h"
 #include "Window.h"
@@ -14,7 +9,7 @@ int main(int argc, char* argv[])
     char file[100];
 
 #ifdef _WIN64
-    // Using Windows File System API to select file.
+    // In windows system, using Windows File System API to select file.
     OPENFILENAMEA ofn;
 
     ZeroMemory(&ofn, sizeof(ofn));
@@ -33,6 +28,7 @@ int main(int argc, char* argv[])
         exit(-1);
 
 #elif __linux__
+    // In linux system, use command line to select file.
     if (argc != 2)
     {
         std::cout << "Usage : ./CHIP8-Emulator <File Path>";
@@ -41,6 +37,13 @@ int main(int argc, char* argv[])
 
     file = argv[1];
 #endif
+
+    // Initialize SDL for graphic and audio.
+    if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+    {
+        printf("SDL_Error: %s\n", SDL_GetError());
+        exit(1);
+    }
 
     CHIP8 chip8;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <stdlib.h>
+#include "pch.h"
 #include "CHIP8.h"
 
 #define DECODE_X(opcode)    static_cast<uint8_t>((opcode & 0x0F00) >> 8)

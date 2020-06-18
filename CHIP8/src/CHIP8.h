@@ -8,11 +8,7 @@
 #define CHIP8_SCREEN_HEIGHT 32
 #define CHIP8_MICROSECOND_PER_CYCLE 1300
 
-#include <cstdint>
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <bitset>
+#include "pch.h"
 
 class CHIP8;
 class Window;
