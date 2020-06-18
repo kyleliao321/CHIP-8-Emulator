@@ -13,6 +13,7 @@
 class CHIP8;
 class Window;
 class EventHandler;
+class AudioPlayer;
 
 typedef void (CHIP8::* op_fun)();
 
@@ -20,6 +21,7 @@ class CHIP8
 {
     friend class Window;
     friend class EventHandler;
+    friend class AudioPlayer;
 public:
     CHIP8();
     ~CHIP8();

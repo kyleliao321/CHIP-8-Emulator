@@ -45,7 +45,7 @@ void Window::Draw()
 {
     if (m_chip8 == nullptr)
     {
-        std::cout << "Render Error : Window Cannot find CHIP" << std::endl;
+        printf("Window Error: Fail to connect to CHIP.\n");
         exit(1);
     }
 

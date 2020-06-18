@@ -3,6 +3,7 @@
 #include "CHIP8.h"
 #include "Window.h"
 #include "EventHandler.h"
+#include "AudioPlayer.h"
 
 int main(int argc, char* argv[])
 {
@@ -56,6 +57,9 @@ int main(int argc, char* argv[])
     EventHandler eventHandler;
     eventHandler.Connect(&chip8);
 
+    AudioPlayer audioPlayer("../assets/beep.wav");
+    audioPlayer.Connect(&chip8);
+
     chip8.Load(file);
 
     while (true)
@@ -65,6 +69,7 @@ int main(int argc, char* argv[])
         chip8.EmulateCycle();
         eventHandler.HandleEvent();
         window.Draw();
+        audioPlayer.Beep();
 
         auto elapsed = std::chrono::high_resolution_clock::now() - start;
 

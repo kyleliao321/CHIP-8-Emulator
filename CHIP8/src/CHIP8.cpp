@@ -91,7 +91,7 @@ void CHIP8::Load(const std::string& filepath)
 
         if (file_size > 4096 - 512)
         {
-            std::cout << "File Error : Cannot load file with size " << file_size << std::endl;
+            printf("File Error: Cannot load the game file with size %i\n", file_size);
             exit(-1);
         }
 
@@ -102,23 +102,12 @@ void CHIP8::Load(const std::string& filepath)
         for (i = 0; i < file_size; i++)
             memory[i + 0x200] = (uint8_t)buffer[i];
 
-#ifdef DEBUG
-        for (i = 0; i < 0x200 + file_size; i += 2)
-        {
-            std::cout << i << " ";
-            if (i < 0x200)
-                std::cout << std::bitset<16>((uint16_t)memory[i] << 8 | (uint16_t)memory[i + 1]) << std::endl;
-            else
-                std::cout << std::hex << ((uint16_t)memory[i] << 8 | (uint16_t)memory[i + 1]) << std::dec << std::endl;
-        }
-#endif
-
         file.close();
         delete[] buffer;
     }
     else
     {
-        std::cout << "File Error : Cannot open the file at " << filepath << std::endl;
+        printf("File Error: Cannot open the game at %s\n", filepath);
         exit(-1);
     }
 };
@@ -357,7 +346,8 @@ void CHIP8::_timing()
     if (delay_timer > 0)
         --delay_timer;
 
-    --sound_timer;
+    if (sound_timer > 0)
+        --sound_timer;
 };
 
 

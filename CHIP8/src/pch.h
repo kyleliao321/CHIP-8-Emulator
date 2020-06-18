@@ -8,6 +8,7 @@
 #include <bitset>
 #include <thread>
 #include <stdlib.h>
+#include <queue>
 
 #ifdef _WIN64
 #include <Windows.h>
