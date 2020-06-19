@@ -10,6 +10,10 @@ bin-int/
 **.vcxproj.filters
 **.vcxproj.user
 
+# GMake file
+**Makefile
+
 # Premake5 dependencies and Project Generate Command
+premake5
 !dependencies/bin/premake5
 **.bat

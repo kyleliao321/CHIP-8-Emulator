@@ -30,18 +30,8 @@ project "CHIP8"
 
 	includedirs
 	{
-		"%{prj.name}/dependencies/SDL2/include"
-	}
-
-	libdirs
-	{
-		"%{prj.name}/dependencies/SDL2/lib/x64"
-	}
-
-	links
-	{
-		"SDL2.lib",
-		"SDL2main.lib"
+		"%{prj.name}/dependencies/SDL2/include",
+		"%{prj.name}/src"
 	}
 
 	filter "configurations:Debug"
@@ -55,7 +45,21 @@ project "CHIP8"
 	filter "system:windows"
 		systemversion "latest"
 
+		libdirs
+		{
+			"%{prj.name}/dependencies/SDL2/lib/x64"
+		}
+	
+		links
+		{
+			"SDL2.lib",
+			"SDL2main.lib"
+		}	
+
 		postbuildcommands
 		{
 			("{COPY} %{prj.location}/dependencies/SDL2/lib/x64/SDL2.dll %{cfg.buildtarget.directory}")
 		}
+	
+	filter "system:linux"
+		links { "SDL2" }

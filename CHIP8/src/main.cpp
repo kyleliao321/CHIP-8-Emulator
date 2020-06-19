@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
         exit(1);
     }
 
-    file = argv[1];
+    strcpy(file, argv[1]);
 #else
     // Unsupport platform.
     std::cout << "Unsupport Platform" << std::endl;
