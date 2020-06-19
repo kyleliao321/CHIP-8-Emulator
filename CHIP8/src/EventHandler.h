@@ -15,5 +15,5 @@ public:
 private:
     static uint8_t m_keymap[16];
 
-    CHIP8* m_chip8;
+    CHIP8 *m_chip8;
 };

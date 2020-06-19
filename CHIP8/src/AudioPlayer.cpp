@@ -28,7 +28,7 @@ AudioPlayer::AudioPlayer(const std::string& filePath)
 	desiredSpec.callback = AudioPlayer::audio_callback;
 	desiredSpec.userdata = this;
 
-	// To make sure audio device support given wav file,
+	// To make sure audio device support given wav file format,
 	// set allow_change to 0.
 	m_id = SDL_OpenAudioDevice(NULL, 0, &desiredSpec, &obtainedSpec, 0);
 	if (m_id == 0)
@@ -56,6 +56,7 @@ void AudioPlayer::audio_callback(void* userdata, Uint8* stream, int stream_len)
 	Uint32 sampleLen = static_cast<Uint32>(stream_len);
 	sampleLen = (sampleLen > audioPlayer->m_audio_len ? audioPlayer->m_audio_len : sampleLen);
 
+	// Only play given WAV file once for every Beep call.
 	if (audioPlayer->m_audio_len - sampleLen <= 0)
 	{
 		for (int i = 0; i < stream_len; i++)

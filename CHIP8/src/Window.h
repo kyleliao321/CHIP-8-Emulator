@@ -13,9 +13,9 @@ public:
 
     void Draw();
 private:
-    SDL_Window* m_window;
-    SDL_Renderer* m_renderer;
-    SDL_Texture* m_texture;
+    SDL_Window      *m_window;
+    SDL_Renderer    *m_renderer;
+    SDL_Texture     *m_texture;
 
-    CHIP8* m_chip8;
+    CHIP8           *m_chip8;
 };

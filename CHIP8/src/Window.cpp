@@ -21,12 +21,10 @@ Window::Window(const std::string& name, unsigned int w, unsigned int h)
     m_renderer = SDL_CreateRenderer(m_window, -1, 0);
     SDL_RenderSetLogicalSize(m_renderer, w, h);
 
-    // Create a texture to draw as a pixel.
-    // Each pixel will be 64*32 on screen.
+    // Creaet a texture to represent entire screen.
     m_texture = SDL_CreateTexture(m_renderer,
-        SDL_PIXELFORMAT_ARGB8888,
-        SDL_TEXTUREACCESS_STREAMING,
-        64, 32);
+        SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING,
+        CHIP8_SCREEN_WIDTH, CHIP8_SCREEN_HEIGHT);
 };
 
 Window::~Window()
@@ -66,7 +64,7 @@ void Window::Draw()
         }
         
         // SDL has to know to decode data inside pixels buffer.
-        // Since there should be 64 pixel on each row and each pixel is 4 bytes long,
+        // Since there should be 64 pixels in each row and each pixel is 4 bytes long,
         // the pitch value should set to 64 * sizeof(Uint32).
         SDL_UpdateTexture(m_texture, NULL, pixels, 64 * sizeof(Uint32));
         SDL_RenderClear(m_renderer);

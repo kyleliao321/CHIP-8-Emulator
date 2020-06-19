@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
     char file[100];
 
 #ifdef _WIN64
-    // In windows system, using Windows File System API to select file.
+    // In windows system, use Windows File System API to select file.
     OPENFILENAMEA ofn;
 
     ZeroMemory(&ofn, sizeof(ofn));
@@ -32,11 +32,15 @@ int main(int argc, char* argv[])
     // In linux system, use command line to select file.
     if (argc != 2)
     {
-        std::cout << "Usage : ./CHIP8-Emulator <File Path>";
+        std::cout << "Usage : ./CHIP8-Emulator <File Path>" << std::endl;
         exit(1);
     }
 
     file = argv[1];
+#else
+    // Unsupport platform.
+    std::cout << "Unsupport Platform" << std::endl;
+    exit(1);
 #endif
 
     // Initialize SDL for graphic and audio.
@@ -51,7 +55,7 @@ int main(int argc, char* argv[])
     int w = 1024;
     int h = 512;
 
-    Window window("CHP8 Game", w, h);
+    Window window("CHIP8 Game", w, h);
     window.Connect(&chip8);
 
     EventHandler eventHandler;

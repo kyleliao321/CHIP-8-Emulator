@@ -75,7 +75,6 @@ void CHIP8::initialize()
 
 void CHIP8::Load(const std::string& filepath)
 {
-    // Reset hardware everytime loading a new game.
     initialize();
 
     unsigned int i;
@@ -133,7 +132,7 @@ void CHIP8::_fetch()
     // Example : memory[PC]      = 00 00 00 00 00 11 01 11
     //           memory[PC] << 8 = 00 11 01 11 00 00 00 00
     //           memory[PC+1]    = 00 00 00 00 00 10 00 01
-    //           BITWISE & OP ----------------------------
+    //           BITWISE | OP  ----------------------------
     //           fetched         = 00 11 01 11 00 10 00 01 (original opcode)
     fetched = (uint16_t)memory[PC] << 8 | (uint16_t)memory[PC + 1];
 };
@@ -144,7 +143,7 @@ void CHIP8::_decode()
 
     using c = CHIP8;
 
-    // First using 0xF000 to extract most significant byte of opcode.
+    // First, use 0xF000 to extract most significant byte of opcode.
     switch (fetched & 0xF000)
     {
     case 0x0000:
