@@ -9,3 +9,7 @@ bin-int/
 **.vcxproj
 **.vcxproj.filters
 **.vcxproj.user
+
+# Premake5 dependencies and Project Generate Command
+!dependencies/bin/premake5
+**.bat
